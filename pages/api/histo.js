@@ -71,11 +71,6 @@ const webpage = (title='NestedLogic',xhead,payload)=>{
 
 export default function handler(req, res) {
 
-  //console.log(req.headers['x-real-ip'])
-  //console.log(NextRequest.ip)
-
-
-
   res.status(200).send(webpage("Histogram",`<script> let hdata = ${ (typeof(req.query.d) !== 'undefined' ) ? `[${req.query.d.split(',')}]` : 0 }; </script>`,
   
                                 `<div id="histo"></div>

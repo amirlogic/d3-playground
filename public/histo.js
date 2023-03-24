@@ -7,15 +7,12 @@ const showViz = ()=>{
     .domain([0, dmax])  
     .range([dmax, 0])
 
-    //.append(d3.axisLeft(yScale))
-
-
   const hist = d3.select("#histo")
                 .append("svg")
                     .attr("width", 760)
-                    .attr("height", 500)
+                    .attr("height", 500);
 
-            hist.append("g")
+             hist.append("g")
                     .attr("fill", "#6D3A7E")
                     .attr("transform", "translate(200, 200)")
                 .selectAll("rect")
@@ -26,17 +23,17 @@ const showViz = ()=>{
                     .attr("y", (d) =>{ return dmax - d })
                     .attr("height", d => d);
 
-  const yaxisgenerator = d3.axisLeft()
-                          .scale(yScale)
-
-  hist.append("g")
-    .call(yaxisgenerator)    // d3.axisLeft(yScale)
+  const yaxisgenerator = d3.axisLeft(yScale);
+                          
+  const yAxis =  hist.append("g")
+                          .attr("transform", "translate(200,200)")
+                          .call(yaxisgenerator)
 
 }
 
 showViz()
 
-const moveShape = (direction)=>{
+/* const moveShape = (direction)=>{
 
   switch(direction){
     case 'up':
@@ -60,4 +57,4 @@ const moveShape = (direction)=>{
 
   showViz()
 
-}
+} */

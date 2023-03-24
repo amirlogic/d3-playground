@@ -71,14 +71,8 @@ const webpage = (title='NestedLogic',xhead,payload)=>{
 
 export default function handler(req, res) {
 
-  //console.log(req.headers['x-real-ip'])
-  //console.log(NextRequest.ip)
-
-  // req.body.p
-
-
-
-  res.status(200).send(webpage("Mover",`<script> let xval = ${ (typeof(req.query.x) !== 'undefined' ) ? req.query.x : 50 }; let yval = ${ (typeof(req.query.y) !== 'undefined' ) ? req.query.y : 50 }; </script>`,
+  res.status(200).send(webpage("Mover",`<script> let xval = ${ (typeof(req.query.x) !== 'undefined' ) ? req.query.x : 50 }; 
+                                                  let yval = ${ (typeof(req.query.y) !== 'undefined' ) ? req.query.y : 50 }; </script>`,
   
                                 `<div id="mover"></div>
                                     <div><button onclick="moveShape('up')">UP</button>
