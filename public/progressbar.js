@@ -2,17 +2,26 @@
 const showViz = ()=>{
 
 
-    d3.select("#progress")
-      .style("padding", "20px")
-    .append("svg")
-      .attr("width",1000)
-      .attr("height",600)
-    .append("rect")
+    let pbar = d3.select("#progress")
+                 .style("padding", "20px")
+                 .append("svg")
+                  .attr("width",1000)
+                  .attr("height",600)
+
+    pbar.append("rect")
       .attr("x",xval)
       .attr("y",yval)
       .attr("width",progval)
       .attr("height",20)
       .attr("fill","cornflowerblue")
+
+    pbar.append("rect")
+      .attr("x",xval)
+      .attr("y",yval)
+      .attr("width",100)
+      .attr("height",20)
+      .attr("fill","transparent")
+      .attr("stroke","gray")
 
   
 
