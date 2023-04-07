@@ -31,6 +31,10 @@ export default function Home() {
           Histograms <Link href="/api/histo?d=30,67,12,59,5,87"><a><code>/api/histo</code></a></Link>
         </p>
 
+        <p className="description">
+          World Map <Link href="/api/worldmap"><a><code>/api/worldmap</code></a></Link>
+        </p>
+
       </main>
 
       <Footer />

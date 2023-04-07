@@ -21,6 +21,7 @@ const showViz = ()=>{
       .attr("width",100)
       .attr("height",20)
       .attr("fill","transparent")
+      .attr("stroke-width",2)
       .attr("stroke","gray")
 
   
