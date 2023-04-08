@@ -1,7 +1,6 @@
 
 const showViz = ()=>{
 
-
     let pbar = d3.select("#progress")
                  .style("padding", "20px")
                  .append("svg")
@@ -14,6 +13,7 @@ const showViz = ()=>{
       .attr("width",progval)
       .attr("height",20)
       .attr("fill","cornflowerblue")
+      
 
     pbar.append("rect")
       .attr("x",xval)
