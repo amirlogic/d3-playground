@@ -71,9 +71,10 @@ const webpage = (title='NestedLogic',xhead,payload)=>{
 
 export default function handler(req, res) {
 
-  res.status(200).send(webpage("Histogram",`<script> let hdata = ${ (typeof(req.query.d) !== 'undefined' ) ? `[${req.query.d.split(',')}]` : 0 }; </script>`,
+  res.status(200).send(webpage("Histogram",`<script> let hdata = ${ (typeof(req.query.d) !== 'undefined' ) ? `[${req.query.d.split(',')}]` : 0 }; 
+                                                     let zoom = ${ (typeof(req.query.z) !== 'undefined' ) ? `${req.query.z}` : `1` }; </script>`,
   
                                 `<div id="histo"></div>
-                                    <div></div>`));
+                                 <div style="padding:10px;">zoom: <input type="number" value="${ (typeof(req.query.z) !== 'undefined' ) ? `${req.query.z}` : `1` }" style="width:80px;" min="0" max="5" step="0.5" onblur="changeZoom(this.value);" /></div>`));
     
 }
