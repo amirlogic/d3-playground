@@ -1,11 +1,21 @@
 
-const showViz = ()=>{
+const showViz = (zoom)=>{
 
   const origcolor = "#6D3A7E"
 
   const secolor = "#AEC09A"
 
-  const dmax = d3.max(hdata);
+  const dmax = d3.max(hdata)*zoom;
+
+  const bottom = dmax;
+
+  const barwidth = 20;
+
+  const leftgap = 5;
+
+  const innergap = 10;
+
+  const unitwidth = barwidth+innergap;
 
   const yScale = d3.scaleLinear()
     .domain([0, dmax])  
@@ -31,8 +41,8 @@ const showViz = ()=>{
                 .selectAll("rect")
                 .data(hdata)
                 .join("rect")
-                    .attr("x", (d,i) => i * 40 + 5)
-                    .attr("width", 20)
+                    .attr("x", (d,i) => i * unitwidth + leftgap)
+                    .attr("width", barwidth)
                     .attr("y", (d) =>{ return dmax - d })
                     .attr("height", d => d)
                     .on('mouseover', barHover)
@@ -42,14 +52,26 @@ const showViz = ()=>{
                     })
 
   const yaxisgenerator = d3.axisLeft(yScale);
+
+  const xScale = d3.scaleBand()
+                    .domain(hdata.map((el,i)=>{
+                      return i;
+                    }))
+                    .range([0, hdata.length*unitwidth ])
                           
+  const xaxisgenerator = d3.axisBottom(xScale)
+                      
   const yAxis =  hist.append("g")
                           .attr("transform", "translate(200,200)")
                           .call(yaxisgenerator)
 
+  const xAxis =  hist.append("g")
+                          .attr("transform", `translate(200,${200+bottom})`)
+                          .call(xaxisgenerator)
+
 }
 
-showViz()
+showViz(1)
 
 /* const moveShape = (direction)=>{
 

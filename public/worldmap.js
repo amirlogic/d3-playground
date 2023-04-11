@@ -1,9 +1,9 @@
 
 const showViz = ()=>{
 
-  const width = 800;
+  const width = window.innerWidth-100;   // 800
 
-  const height = 600;
+  const height = width*3/4; // 600
 
   let wmap = d3.select("#wmap")
                 .append("svg")
