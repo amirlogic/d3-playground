@@ -75,9 +75,10 @@ export default function handler(req, res) {
                                                   let yval = ${ (typeof(req.query.y) !== 'undefined' ) ? req.query.y : 50 }; </script>`,
   
                                 `<div id="mover"></div>
-                                    <div><button onclick="moveShape('up')">UP</button>
+                                    <div style="margin:10px;"><button onclick="moveShape('up')">UP</button>
                                     <button onclick="moveShape('down')">DOWN</button>
                                     <button onclick="moveShape('left')">LEFT</button>
-                                    <button onclick="moveShape('right')">RIGHT</button></div>`));   // ${req.query.p}
+                                    <button onclick="moveShape('right')">RIGHT</button>
+                                    <span style="padding-left:20px;">You can just drag!</span></div>`));   // ${req.query.p}
     
 }

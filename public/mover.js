@@ -4,18 +4,47 @@ const showViz = ()=>{
 
 
 
-    d3.select("#mover")
-      .style("padding", "20px")
-    .append("svg")
-      .attr("width",1000)
-      .attr("height",600)
-    .append("circle")
-      .attr("cx",xval)
-      .attr("cy",yval)
-      .attr("r",40)
-      .attr("fill","cornflowerblue")
+    let cont = d3.select("#mover")
+                  .style("padding", "20px")
+                .append("svg")
+                  .attr("width",1000)
+                  .attr("height",600)
 
+    let circle = cont.append("circle")
+                  .attr("cx",xval)
+                  .attr("cy",yval)
+                  .attr("r",40)
+                  .attr("fill","cornflowerblue")
+                  .on('click',(e)=>{
 
+                    d3.select(e.srcElement).transition()
+                    .attr("fill", "black")
+                    .attr("r", 80)
+                    .transition()
+                    .attr("r", 40)
+                    .attr("fill", "cornflowerblue");
+            
+                  })
+                  .call(d3.drag().on("drag", (e)=>{
+
+                    circle.attr("cx", e.x)
+                    circle.attr("cy", e.y)
+                  }))
+
+        
+    //d3.select(circle).call(d3.drag().on("start", ()=>{ console.log("drag") }));
+
+                  /* handler
+                  .on('touchstart',()=>{
+
+                    console.log("start")
+                  })
+                  .on('touchmove',()=>{
+
+                    console.log("drag")
+                  }) */
+
+    
 }
 
 showViz()
@@ -42,6 +71,6 @@ const moveShape = (direction)=>{
 
   }
 
-  showViz()
+  //showViz()
 
 }
