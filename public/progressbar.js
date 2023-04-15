@@ -7,7 +7,7 @@ const showViz = ()=>{
                   .attr("width",1000)
                   .attr("height",600)
 
-    pbar.append("rect")
+    let innerBar = pbar.append("rect")
       .attr("x",xval)
       .attr("y",yval)
       .attr("width",progval)
@@ -23,7 +23,12 @@ const showViz = ()=>{
       .attr("fill","transparent")
       .attr("stroke-width",2)
       .attr("stroke","gray")
+      .on('click', (e)=>{
 
+        //console.log( e.offsetX-xval, e.offsetY )
+        innerBar.attr("width", e.offsetX-xval)
+      
+      })
   
 
 
