@@ -32,17 +32,7 @@ const showViz = ()=>{
                   }))
 
         
-    //d3.select(circle).call(d3.drag().on("start", ()=>{ console.log("drag") }));
-
-                  /* handler
-                  .on('touchstart',()=>{
-
-                    console.log("start")
-                  })
-                  .on('touchmove',()=>{
-
-                    console.log("drag")
-                  }) */
+   
 
     
 }

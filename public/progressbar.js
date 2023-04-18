@@ -26,7 +26,7 @@ const showViz = ()=>{
       .on('click', (e)=>{
 
         //console.log( e.offsetX-xval, e.offsetY )
-        innerBar.attr("width", e.offsetX-xval)
+        innerBar.transition().attr("width", e.offsetX-xval)
       
       })
   

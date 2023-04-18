@@ -29,7 +29,7 @@ const showViz = ()=>{
 
       let hbar = d3.select(e.srcElement)
 
-      hbar.attr("fill", secolor)
+      hbar.transition().attr("fill", secolor)
 
       //console.log("hover!")
   }
@@ -47,13 +47,16 @@ const showViz = ()=>{
                 .join("rect")
                     .attr("x", (d,i) => i * unitwidth + leftgap)
                     .attr("width", barwidth)
-                    .attr("y", (d) =>{ return (dmax - d)*zoom })
-                    .attr("height", d => d*zoom)
+                    //.attr("y", (d) =>{ return (dmax - d)*zoom })
+                    //.attr("height", d => d*zoom)
                     .on('mouseover', barHover)
                     .on('mouseout', (e)=>{
 
-                      d3.select(e.srcElement).attr("fill", origcolor)
+                      d3.select(e.srcElement).transition().attr("fill", origcolor)
                     })
+                    .transition()
+                    .attr("y", (d) =>{ return (dmax - d)*zoom })
+                    .attr("height", d => d*zoom)
 
   const yaxisgenerator = d3.axisLeft(yScale);
 
