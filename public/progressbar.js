@@ -1,63 +1,63 @@
+const showViz = () => {
+	let pbar = d3
+		.select('#progress')
+		.style('padding', '20px')
+		.append('svg')
+		.attr('width', 1000)
+		.attr('height', 600);
 
-const showViz = ()=>{
+	let innerBar = pbar
+		.append('rect')
+		.attr('x', xval)
+		.attr('y', yval)
+		.attr('width', progval)
+		.attr('height', 20)
+		.attr('fill', 'cornflowerblue');
 
-    let pbar = d3.select("#progress")
-                 .style("padding", "20px")
-                 .append("svg")
-                  .attr("width",1000)
-                  .attr("height",600)
+	pbar
+		.append('rect')
+		.attr('x', xval)
+		.attr('y', yval)
+		.attr('width', 100)
+		.attr('height', 20)
+		.attr('fill', 'transparent')
+		.attr('stroke-width', 2)
+		.attr('stroke', 'gray')
+		.on('click', e => {
+			//console.log( e.offsetX-xval, e.offsetY )
+			innerBar.transition().attr('width', e.offsetX - xval);
+		});
+};
 
-    let innerBar = pbar.append("rect")
-      .attr("x",xval)
-      .attr("y",yval)
-      .attr("width",progval)
-      .attr("height",20)
-      .attr("fill","cornflowerblue")
-      
+showViz();
 
-    pbar.append("rect")
-      .attr("x",xval)
-      .attr("y",yval)
-      .attr("width",100)
-      .attr("height",20)
-      .attr("fill","transparent")
-      .attr("stroke-width",2)
-      .attr("stroke","gray")
-      .on('click', (e)=>{
+const moveShape = direction => {
+	switch (direction) {
+		case 'up':
+			window.location = `${location.pathname}?p=${progval}&x=${xval}&y=${
+				yval - 20
+			}`;
+			//yval+=20
+			break;
+		case 'down':
+			window.location = `${location.pathname}?p=${progval}&x=${xval}&y=${
+				yval + 20
+			}`;
+			//yval-=20
+			break;
+		case 'left':
+			window.location = `${location.pathname}?p=${progval}&x=${
+				xval - 20
+			}&y=${yval}`;
+			//xval-=20
+			break;
+		case 'right':
+			window.location = `${location.pathname}?p=${progval}&x=${
+				xval + 20
+			}&y=${yval}`;
+			//xval+=20
+			break;
+	}
 
-        //console.log( e.offsetX-xval, e.offsetY )
-        innerBar.transition().attr("width", e.offsetX-xval)
-      
-      })
-  
-
-
-}
-
-showViz()
-
-const moveShape = (direction)=>{
-
-  switch(direction){
-    case 'up':
-      window.location = `${location.pathname}?p=${progval}&x=${xval}&y=${yval-20}`
-      //yval+=20
-      break;
-    case 'down':
-      window.location = `${location.pathname}?p=${progval}&x=${xval}&y=${yval+20}`
-      //yval-=20
-      break;
-    case 'left':
-      window.location = `${location.pathname}?p=${progval}&x=${xval-20}&y=${yval}`
-      //xval-=20
-      break;
-    case 'right':
-      window.location = `${location.pathname}?p=${progval}&x=${xval+20}&y=${yval}`
-      //xval+=20
-      break;
-
-  }
-
-  showViz()
-
-}
+	showViz();
+};

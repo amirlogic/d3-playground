@@ -1,16 +1,14 @@
+/**
+ * Renders an html page
+ *
+ *@param {string} title - Page title
+ *@param {string} xhead - Additional tags in the head section
+ *@param {string} payload - Content of body section
+ *
+ */
 
-/** 
-* Renders an html page
-*
-*@param {string} title - Page title
-*@param {string} xhead - Additional tags in the head section
-*@param {string} payload - Content of body section
-*
-*/
-
-const webpage = (title='NestedLogic',xhead,payload)=>{
-
-  return `<!doctype html>
+const webpage = (title = 'NestedLogic', xhead, payload) => {
+	return `<!doctype html>
           <html>
             <head>
               <meta charset="utf-8">
@@ -64,21 +62,28 @@ const webpage = (title='NestedLogic',xhead,payload)=>{
                 <script src="/mover.js"></script>
             </body>
           </html>`;
-}
-
-
-
+};
 
 export default function handler(req, res) {
+	res.status(200).send(
+		webpage(
+			'Mover',
+			`<script> let xval = ${
+				typeof req.query.x !== 'undefined' ? req.query.x : 50
+			}; 
+                                                  let yval = ${
+																										typeof req.query.y !==
+																										'undefined'
+																											? req.query.y
+																											: 50
+																									}; </script>`,
 
-  res.status(200).send(webpage("Mover",`<script> let xval = ${ (typeof(req.query.x) !== 'undefined' ) ? req.query.x : 50 }; 
-                                                  let yval = ${ (typeof(req.query.y) !== 'undefined' ) ? req.query.y : 50 }; </script>`,
-  
-                                `<div id="mover"></div>
+			`<div id="mover"></div>
                                     <div style="margin:10px;"><button onclick="moveShape('up')">UP</button>
                                     <button onclick="moveShape('down')">DOWN</button>
                                     <button onclick="moveShape('left')">LEFT</button>
                                     <button onclick="moveShape('right')">RIGHT</button>
-                                    <span style="padding-left:20px;">You can just drag!</span></div>`));   // ${req.query.p}
-    
+                                    <span style="padding-left:20px;">You can just drag!</span></div>`,
+		),
+	); // ${req.query.p}
 }

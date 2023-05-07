@@ -1,50 +1,48 @@
+const showViz = () => {
+	const width = window.innerWidth - 100; // 800
 
-const showViz = ()=>{
+	const height = (width * 3) / 4; // 600
 
-  const width = window.innerWidth-100;   // 800
+	let wmap = d3
+		.select('#wmap')
+		.append('svg')
+		.attr('width', width)
+		.attr('height', height);
 
-  const height = width*3/4; // 600
+	let projection = d3
+		.geoNaturalEarth1()
+		.scale(width / 1.3 / Math.PI)
+		.translate([width / 2, height / 2]);
 
-  let wmap = d3.select("#wmap")
-                .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
+	const countryClick = (e, d) => {
+		d3.select('#target').text(
+			JSON.stringify({id: d.id, name: d.properties.name}),
+		);
+		let country = d3.select(e.srcElement);
 
-  let projection = d3.geoNaturalEarth1()
-                    .scale(width / 1.3 / Math.PI)
-                    .translate([width / 2, height / 2])
+		country.attr('fill', '#AEC09A');
+		console.log(e);
+		//console.log(i)
+		console.log(country);
+	};
 
+	d3.json(
+		'https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson',
+	).then(function (data) {
+		// Draw the map
+		wmap
+			.append('g')
+			.selectAll('path')
+			.data(data.features)
+			.join('path')
+			.attr('fill', '#69b3a2')
+			.attr('d', d3.geoPath().projection(projection))
+			.style('stroke', '#fff')
+			.on('click', countryClick);
+	});
+};
 
-  const countryClick = (e,d)=>{
-
-    d3.select('#target').text(JSON.stringify({id:d.id, name:d.properties.name }))
-                let country = d3.select(e.srcElement)
-
-                country.attr("fill", "#AEC09A")
-                console.log(e)
-                //console.log(i)
-                console.log(country)
-  }
-
-  d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then( function(data){
-
-      // Draw the map
-      wmap.append("g")
-          .selectAll("path")
-          .data(data.features)
-          .join("path")
-              .attr("fill", "#69b3a2")
-              .attr("d", d3.geoPath()
-              .projection(projection)
-              )
-              .style("stroke", "#fff")
-              .on('click', countryClick)
-  })
-
-  
-}
-
-showViz()
+showViz();
 
 /* const moveShape = (direction)=>{
 

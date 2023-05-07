@@ -59,7 +59,7 @@ const webpage = (title = 'NestedLogic', xhead, payload) => {
             <body>
                 ${payload}
                 <script src="https://d3js.org/d3.v7.min.js"></script>
-                <script src="/histo.js"></script>
+                <script src="/dispatch.js"></script>
             </body>
           </html>`;
 };
@@ -67,23 +67,21 @@ const webpage = (title = 'NestedLogic', xhead, payload) => {
 export default function handler(req, res) {
 	res.status(200).send(
 		webpage(
-			'Histogram',
-			`<script> let hdata = ${
-				typeof req.query.d !== 'undefined' ? `[${req.query.d.split(',')}]` : 0
+			'Mover',
+			`<script> let xval = ${
+				typeof req.query.x !== 'undefined' ? req.query.x : 50
 			}; 
-                                                     let zoom = ${
-																												typeof req.query.z !==
-																												'undefined'
-																													? `${req.query.z}`
-																													: `1`
-																											}; </script>`,
+                                                  let yval = ${
+																										typeof req.query.y !==
+																										'undefined'
+																											? req.query.y
+																											: 50
+																									}; </script>`,
 
-			`<div id="histo"></div>
-                                 <div style="padding:10px;">zoom: <input type="number" value="${
-																		typeof req.query.z !== 'undefined'
-																			? `${req.query.z}`
-																			: `1`
-																	}" style="width:80px;" min="0" max="5" step="0.5" onblur="changeZoom(this.value);" /></div>`,
+			`<div id="wrapper"></div>
+                                    <div style="margin:10px;"><button onclick="changeShape()">change</button>
+                                    
+                                    <span style="padding-left:20px;">You can just click!</span></div>`,
 		),
-	);
+	); // ${req.query.p}
 }

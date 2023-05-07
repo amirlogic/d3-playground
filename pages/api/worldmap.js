@@ -1,16 +1,14 @@
+/**
+ * Renders an html page
+ *
+ *@param {string} title - Page title
+ *@param {string} xhead - Additional tags in the head section
+ *@param {string} payload - Content of body section
+ *
+ */
 
-/** 
-* Renders an html page
-*
-*@param {string} title - Page title
-*@param {string} xhead - Additional tags in the head section
-*@param {string} payload - Content of body section
-*
-*/
-
-const webpage = (title='NestedLogic',xhead,payload)=>{
-
-  return `<!doctype html>
+const webpage = (title = 'NestedLogic', xhead, payload) => {
+	return `<!doctype html>
           <html>
             <head>
               <meta charset="utf-8">
@@ -64,20 +62,21 @@ const webpage = (title='NestedLogic',xhead,payload)=>{
                 <script src="/worldmap.js"></script>
             </body>
           </html>`;
-}
+};
 
 // <script src="https://d3js.org/d3.v6.js"></script> <script src="https://d3js.org/d3.v7.js"> </script> </script><script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script><script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
 // <script> let hdata = ${ (typeof(req.query.d) !== 'undefined' ) ? `[${req.query.d.split(',')}]` : 0 }; </script>
 
-
 export default function handler(req, res) {
+	res.status(200).send(
+		webpage(
+			'Histogram',
 
-  res.status(200).send(webpage("Histogram",
-  
-                                `<script src="https://d3js.org/d3.v7.js"></script>`,
-  
-                                `<div id="wmap"></div>
-                                 <div id="target">...</div>`));
-    
+			`<script src="https://d3js.org/d3.v7.js"></script>`,
+
+			`<div id="wmap"></div>
+                                 <div id="target">...</div>`,
+		),
+	);
 }
