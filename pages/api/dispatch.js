@@ -79,7 +79,7 @@ export default function handler(req, res) {
 																									}; </script>`,
 
 			`<div id="wrapper"></div>
-                                    <div style="margin:10px;"><button onclick="changeShape()">change</button>
+                                    <div style="margin:10px;"><input type="range" min="0" max="10" onchange="changeShape(this.value)" />
                                     
                                     <span style="padding-left:20px;">You can just click!</span></div>`,
 		),

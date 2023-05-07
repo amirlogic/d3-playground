@@ -3,6 +3,8 @@ const dispatch = d3.dispatch("test", "none");
 
 const newcolor = "#c5f1b4"
 
+let circle;
+
 const showViz = () => {
 
 	let cont = d3.select('#wrapper')
@@ -11,25 +13,28 @@ const showViz = () => {
 		.attr('width', 1000)
 		.attr('height', 600);
 
-	let circle = cont
+	circle = cont
 		.append('circle')
 		.attr('cx', xval)
 		.attr('cy', yval)
 		.attr('r', 40)
 		.attr('fill', 'cornflowerblue')
-		.call( dispatch.on('test', ()=>{
+		/* .call( dispatch.on('test', ()=>{
 
 			console.log("it works!")
 			//console.log(t,s)
 			
-		}))
+		})) */
+
+		// this call() prevents circle.attr() to work!
 		
 };
 
 showViz();
 
-function changeShape(){
+function changeShape(numval){
 
-	dispatch.call("test")
+	circle.attr('r', numval*10)
+	//dispatch.call("test")
 
 };
