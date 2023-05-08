@@ -6,7 +6,7 @@ module.exports = {
           headers: [
             {
               key: 'Content-Disposition',
-              value: 'attachment; filename="demo.svg"',
+              value: 'attachment; filename="vector.svg"',
             },
             
           ],

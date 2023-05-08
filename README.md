@@ -24,6 +24,10 @@ Moving Circle `pages/api/mover.js`
 
 Histogram `pages/api/histo.js`
 
+## API endpoints
+
+Demo file `pages/api/svg`
+
 ## Testing
 
 ### Included Default Testing
