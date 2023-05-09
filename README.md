@@ -24,6 +24,8 @@ Moving Circle `pages/api/mover.js`
 
 Histogram `pages/api/histo.js`
 
+App (SVG generator interface) `pages/app.js`
+
 ## API endpoints
 
 Demo file `pages/api/svg`

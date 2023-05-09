@@ -3,13 +3,15 @@ import Link from 'next/link';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 
 export default function App() {
 
-	let [rawjson,setRawJson] = useState({})
+	let [rawjson,setRawJson] = useState({"target":"text","content":"Yes it works!"})
 	let [generate,setGenerate] = useState(false)
 	let [xml,setXml] = useState("...")
+
+	const iframeRef = useRef(null)
 
 	useEffect(() => {
 		
@@ -27,7 +29,11 @@ export default function App() {
 			setGenerate(false);
 			setXml(data.svg);
 
-			document.getElementById('svg').innerHTML = data.svg;
+			//document.getElementById('svg').innerHTML = data.svg;
+			iframeRef.current.srcdoc = data.svg;
+			//console.log(data.svg)
+
+			//document.getElementById('svg').srcdoc = data.svg;
 
 		  });
 
@@ -44,7 +50,9 @@ export default function App() {
 
 				<p className="description">D3.js in API mode</p>
 
-				<div id="svg"></div>
+				{/* <div id="svg" style={{width:`500px`,height:`500px`}}></div> */}
+
+				<iframe id="svg" ref={iframeRef} width="500" height="500" style={{border:`0`,padding:`0`,overflow:`hidden`}}></iframe>
 
 				<textarea id="jsoninput" style={{width:`600px`,height:`100px`}} onChange={(e) => { 
 					
@@ -57,20 +65,20 @@ export default function App() {
 						setRawJson({})
 					}
 					
-				}}></textarea>
+				}} defaultValue={`{"target":"text","content":"Yes it works!"}`}></textarea>
 
-				<button style={{padding:`20px`}} onClick={()=>{ setGenerate(true) }}>Generate</button>
+				<button style={{padding:`10px 20px`}} onClick={()=>{ setGenerate(true) }}>Generate</button>
 
-				<p className="description">
+				<p className="description" style={{backgroundColor:`#efefef`,padding:`5px`}}>
 					
 					{xml}	
 
 				</p>
 
-				<p className="description">
+				<div className="description">
 
 					<pre>{`{"target":"text","content":"Yes it works!"}`}</pre>
-				</p>
+				</div>
 
 				
 			</main>

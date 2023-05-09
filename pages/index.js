@@ -50,6 +50,16 @@ export default function Home() {
 						</a>
 					</Link>
 				</p>
+
+				<p className="description">
+					SVG Generator{' '}
+					<Link href="/app">
+						<a>
+							<code>/app</code>
+						</a>
+					</Link>
+				</p>
+
 			</main>
 
 			<Footer />
