@@ -14,10 +14,10 @@ const svgen = require('/lib/svgen.js')
 export default function handler(req, res) {
 
   //console.log( svgen.xml(d3,'demo') )
-
   // {target:'text',content:"This is a test"}
-
   // {target:"table",dataset:[{name:"Sweden",language:"Swedish"},{name:"France",language:"French"}]}
 
-  res.status(200).send( svgen.xml( d3,{target:'text',content:"This is a test"} ) )
+  //console.log(req.body)
+
+  res.status(200).send( { "svg":svgen.xml( d3,req.body?.raw ) } )
 }
