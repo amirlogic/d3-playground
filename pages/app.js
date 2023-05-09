@@ -18,7 +18,6 @@ export default function App() {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					// 'Content-Type': 'application/x-www-form-urlencoded',
 		  		},
 				body: JSON.stringify({raw:rawjson})
 			})
@@ -27,6 +26,8 @@ export default function App() {
 			
 			setGenerate(false);
 			setXml(data.svg);
+
+			document.getElementById('svg').innerHTML = data.svg;
 
 		  });
 
@@ -43,9 +44,9 @@ export default function App() {
 
 				<p className="description">D3.js in API mode</p>
 
-				<div><iframe id="svg" src="/api/svg" /></div>
+				<div id="svg"></div>
 
-				<textarea id="jsoninput" onChange={(e) => { 
+				<textarea id="jsoninput" style={{width:`600px`,height:`100px`}} onChange={(e) => { 
 					
 					try{
 
@@ -58,11 +59,7 @@ export default function App() {
 					
 				}}></textarea>
 
-				<button onClick={()=>{ setGenerate(true) }}>Generate</button>
-
-				<p className="description">
-					Generate: {generate ? "true" : "false"}
-				</p>
+				<button style={{padding:`20px`}} onClick={()=>{ setGenerate(true) }}>Generate</button>
 
 				<p className="description">
 					
@@ -72,7 +69,7 @@ export default function App() {
 
 				<p className="description">
 
-
+					<pre>{`{"target":"text","content":"Yes it works!"}`}</pre>
 				</p>
 
 				
