@@ -10,8 +10,10 @@ export default function App() {
 	let [rawjson,setRawJson] = useState({"target":"text","content":"Yes it works!"})
 	let [generate,setGenerate] = useState(false)
 	let [xml,setXml] = useState("...")
+	let [jsonError,setJsonError] = useState(false)
 
 	const iframeRef = useRef(null)
+	const textareaRef = useRef(null)
 
 	useEffect(() => {
 		
@@ -29,11 +31,7 @@ export default function App() {
 			setGenerate(false);
 			setXml(data.svg);
 
-			//document.getElementById('svg').innerHTML = data.svg;
 			iframeRef.current.srcdoc = data.svg;
-			//console.log(data.svg)
-
-			//document.getElementById('svg').srcdoc = data.svg;
 
 		  });
 
@@ -50,24 +48,24 @@ export default function App() {
 
 				<p className="description">D3.js in API mode</p>
 
-				{/* <div id="svg" style={{width:`500px`,height:`500px`}}></div> */}
-
 				<iframe id="svg" ref={iframeRef} width="500" height="500" style={{border:`0`,padding:`0`,overflow:`hidden`}}></iframe>
 
-				<textarea id="jsoninput" style={{width:`600px`,height:`100px`}} onChange={(e) => { 
+				<textarea id="jsoninput" ref={textareaRef} style={{width:`600px`,height:`100px`,backgroundColor:(jsonError)? '#ffeccc' : '#FFFFFF'}} onChange={(e) => { 
 					
 					try{
 
-						setRawJson(JSON.parse(e.target.value)) 
+						setRawJson(JSON.parse(e.target.value))
+						setJsonError(false)
 					}
 					catch(err){
 
+						setJsonError(true)
 						setRawJson({})
 					}
 					
-				}} defaultValue={`{"target":"text","content":"Yes it works!"}`}></textarea>
+				}} defaultValue={JSON.stringify(rawjson)}></textarea>	{/* `{"target":"text","content":"Yes it works!"}` */}
 
-				<button style={{padding:`10px 20px`}} onClick={()=>{ setGenerate(true) }}>Generate</button>
+				<button style={{padding:`10px 20px`}} onClick={()=>{ setGenerate(true) }}>{(jsonError)? 'Error!' : 'Generate'}</button>
 
 				<p className="description" style={{backgroundColor:`#efefef`,padding:`5px`}}>
 					
@@ -77,7 +75,37 @@ export default function App() {
 
 				<div className="description">
 
-					<pre>{`{"target":"text","content":"Yes it works!"}`}</pre>
+					<button onClick={()=>{ 
+						
+						let boilerplate = `{"target":"text","content":"Yes it works!"}`
+
+						textareaRef.current.value = boilerplate
+						setRawJson(JSON.parse(boilerplate))
+						
+						console.log(textareaRef.value)
+
+					 }}>Text</button>
+
+					<button onClick={()=>{ 
+						
+						let boilerplate = `{"target":"circles","dataset":[{"r":40,"cx":100,"cy":100,"color":"yellow"},{"r":60,"cx":300,"cy":300,"color":"lightblue"}]}`
+
+						textareaRef.current.value = boilerplate
+						setRawJson(JSON.parse(boilerplate))
+						
+						console.log(textareaRef.value)
+
+					 }}>Circles</button>
+					 <button onClick={()=>{ 
+						
+						let boilerplate = `{"target":"histogram","color":"blue","barwidth":20,"intergap":5,"dataset":[25,67,45,19,89]}`
+
+						textareaRef.current.value = boilerplate
+						setRawJson(JSON.parse(boilerplate))
+						
+
+					 }}>Histogram</button>
+
 				</div>
 
 				
