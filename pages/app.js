@@ -63,7 +63,7 @@ export default function App() {
 						setRawJson({})
 					}
 					
-				}} defaultValue={JSON.stringify(rawjson)}></textarea>	{/* `{"target":"text","content":"Yes it works!"}` */}
+				}} defaultValue={JSON.stringify(rawjson)}></textarea>
 
 				<button style={{padding:`10px 20px`}} onClick={()=>{ setGenerate(true) }}>{(jsonError)? 'Error!' : 'Generate'}</button>
 
