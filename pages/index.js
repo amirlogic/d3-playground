@@ -52,6 +52,16 @@ export default function Home() {
 				</p>
 
 				<p className="description">
+					Pie chart{' '}
+					<Link href="/api/piechart">
+						<a>
+							<code>/api/piechart</code>
+						</a>
+					</Link>
+				</p>
+
+
+				<p className="description">
 					SVG Generator{' '}
 					<Link href="/app">
 						<a>
