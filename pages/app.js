@@ -98,7 +98,7 @@ export default function App() {
 					 }}>Circles</button>
 					 <button onClick={()=>{ 
 						
-						let boilerplate = `{"target":"histogram","color":"blue","barwidth":20,"intergap":5,"dataset":[25,67,45,19,89]}`
+						let boilerplate = `{"target":"histogram","color":"blue","barwidth":20,"intergap":5,"dataset":[25,67,45,19,89],"size":2,"animate":true}`
 
 						textareaRef.current.value = boilerplate
 						setRawJson(JSON.parse(boilerplate))
