@@ -48,7 +48,7 @@ export default function App() {
 
 				<p className="description">D3.js in API mode</p>
 
-				<iframe id="svg" ref={iframeRef} width="500" height="500" style={{border:`0`,padding:`0`,overflow:`hidden`}}></iframe>
+				<iframe id="svg" ref={iframeRef} width="520" height="520" style={{border:`0`,padding:`0`,overflow:`hidden`}}></iframe>
 
 				<textarea id="jsoninput" ref={textareaRef} style={{width:`600px`,height:`100px`,backgroundColor:(jsonError)? '#ffeccc' : '#FFFFFF'}} onChange={(e) => { 
 					
